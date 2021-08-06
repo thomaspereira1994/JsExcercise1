@@ -59,16 +59,75 @@
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers"><code class="language-javascript">
-                        //call hello world
-                        function HelloWorld(){
-                        alert("hello world");
+                        //get values from interface
+                        function GetValues() {
+                            //get values from page
+                            let startValue = document.getElementById("startValue").value;
+                            let endValue = document.getElementById("endValue").value;
+                        
+                            //parse values into ints
+                            startValue = parseInt(startValue);
+                            endValue = parseInt(endValue);
+                        
+                            //validate input
+                            if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+                                let numbers = NumberGenerator(startValue, endValue);
+                        
+                                DisplayNumbers(numbers);
+                            } else {
+                                alert("You must enter integers");
+                            }
+                        }
+                        
+                        //generate numbers from startValue to endValue
+                        function NumberGenerator(startValue, endValue) {
+                        
+                            //declaration of array in js
+                            let numbers = [];
+                        
+                            for (let i = startValue; i <= endValue; i++) {
+                                numbers.push(i); //push is a function to add numbers into array
+                            }
+                            return numbers;
+                        }
+                        
+                        //display all values, and mark even numbers bold
+                        function DisplayNumbers(numbers) {
+                        
+                            let templateRows = "";
+                            for (let i = 0; i < numbers.length; i++) {
+                        
+                                let className = "even";
+                                let number = numbers[i];
+                        
+                                if (number % 2 == 0) {
+                                    className = "even";
+                                } else {
+                                    className = "odd";
+                                }
+                                //This does not render properly with Prism. See source code for correct format.
+                                templateRows += `<tr><td class="${className}">${number}</td></tr>`;
+                            }
+                        
+                            document.getElementById("results").innerHTML = templateRows;
                         }
                     </code></pre>
                 </div>
                 <div class="col-lg-4 pt-2">
-                    <p>The Code is structured in one function.</p>
-                    <h5>Hello world</h5>
-                    <p>Hello world is a function that displays an alert with a message of hello world</p>
+                    <p>The Code is structured in three functions.</p>
+                    <h5>GetValues</h5>
+                    <p>GetValues gets the values that the user input.<br>
+                       It then checks if the inputs are integers. If not, an alert will be displayed to the user.<br>
+                       If both inputs are integers, the DisplayNumbers function will be called.
+                    </p>
+                    <h5>NumberGenerator</h5>
+                    <p>The NumberGenerator functions adds every number between the input values the user entered, including the start and end value, to an array.
+                       It then returns the array.
+                    </p>
+                    <h5>DisplayNumbers</h5>
+                    <p>The DisplayNumbers function will go through each value in the array,
+                        check if the value is even or odd, and then write those values out to an HTML table.
+                        If the value is even, the number will be outputed in bold.</p>
                 </div>
             </div>
         </div>
