@@ -25,8 +25,7 @@ function GetValues() {
 
 //generate numbers from startValue to endValue
 function NumberGenerator(startValue, endValue) {
-
-    //declaration of array in js
+   
     let numbers = [];
 
     for (let i = startValue; i <= endValue; i++) {
@@ -37,7 +36,6 @@ function NumberGenerator(startValue, endValue) {
 
 //display all values, and mark even numbers bold
 function DisplayNumbers(numbers) {
-
     let templateRows = "";
     for (let i = 0; i < numbers.length; i++) {
 
